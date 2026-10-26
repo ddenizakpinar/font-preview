@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lato — Yazı örneği</title>
+  <style>
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-LightItalic.ttf") format("truetype"); font-weight: 300; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-MediumItalic.ttf") format("truetype"); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Semibold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-SemiboldItalic.ttf") format("truetype"); font-weight: 600; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-BoldItalic.ttf") format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Heavy.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-HeavyItalic.ttf") format("truetype"); font-weight: 800; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-Black.ttf") format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Lato"; src: url("fonts/Lato-BlackItalic.ttf") format("truetype"); font-weight: 900; font-style: italic; font-display: swap; }
+
+    :root {
+      --paper: #f4f0e8;
+      --ink: #333;
+      --muted: #746c63;
+      --line: rgba(51, 51, 51, 0.14);
+      --white: #fffcf8;
+      --measure: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Lato", Arial, sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    html.opt-synthesis { font-synthesis: none; }
+    html.opt-legibility { text-rendering: optimizeLegibility; }
+    html.opt-features { font-feature-settings: "kern" 1, "calt" 1, "liga" 1; }
+    ::selection { background: var(--ink); color: var(--paper); }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    button, input { font-family: inherit; color: inherit; }
+    a { color: inherit; }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(244, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .top-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 14px 28px;
+    }
+    .opt-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      padding: 0 28px 12px;
+    }
+    .opt-bar p {
+      margin: 0;
+      flex: 1 1 220px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+    .opt-bar code { font-family: inherit; font-size: 12px; font-weight: 500; }
+    .mark {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      flex: none;
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      flex: 1;
+      min-width: 0;
+    }
+    nav a {
+      flex: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+    }
+    nav a.is-on { color: var(--ink); }
+    .top-meta {
+      flex: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    main { padding-bottom: 40px; }
+    section { padding: 72px 28px; }
+    .wrap { max-width: var(--measure); margin: 0 auto; }
+    .kicker {
+      margin: 0 0 28px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker span { margin-right: 10px; }
+
+    .cover {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 56px;
+      align-items: end;
+    }
+    .eyebrow {
+      margin: 0 0 20px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    h1 {
+      margin: 0;
+      font-weight: 400;
+      font-size: clamp(44px, 6.4vw, 92px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+    h1 .w300 { font-weight: 300; }
+    h1 .w400 { font-weight: 400; }
+    h1 .w700 { font-weight: 700; font-style: italic; }
+    .byline {
+      margin: 28px 0 0;
+      max-width: 42ch;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .style-index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .style-index li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .style-index .label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .style-index .label em {
+      font-style: normal;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+    .style-index .face {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 0;
+      color: var(--muted);
+    }
+    .style-index .face.it { font-style: italic; }
+    .style-index .cuts { display: flex; gap: 14px; font-size: 26px; line-height: 1; }
+    .style-index .cuts b { font-weight: inherit; }
+
+    .tester { border: 1px solid var(--line); background: var(--white); }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .group-label output { letter-spacing: 0; text-transform: none; font-weight: 500; color: var(--ink); }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pills button, .presets button {
+      font-size: 13px;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .pills button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    .slider { width: 180px; accent-color: var(--ink); }
+    .stage {
+      padding: 36px 28px 32px;
+      min-height: 240px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .stage[data-bg="white"] { background: #fff; }
+    .stage[data-bg="ink"] { background: var(--ink); color: var(--paper); }
+    #preview {
+      outline: none;
+      min-height: 1.15em;
+      font-weight: var(--w, 400);
+      font-style: var(--st, normal);
+      font-size: var(--sz, 72px);
+      line-height: var(--lh, 1.05);
+      letter-spacing: var(--tr, 0em);
+      font-feature-settings: var(--feat);
+      overflow-wrap: break-word;
+    }
+    .now {
+      margin: 0 0 14px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .stage[data-bg="ink"] .now { color: rgba(244, 240, 232, 0.72); }
+    #preview:empty::before {
+      content: "Bir metin yazın";
+      color: var(--muted);
+    }
+
+    .aa-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .aa-bar p { margin: 0; max-width: 46ch; color: var(--muted); font-size: 16px; line-height: 1.45; }
+    .aa-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .aa-grid figure {
+      margin: 0;
+      padding: 22px 12px 16px;
+      border-right: 1px solid var(--line);
+    }
+    .aa-grid figure:last-child { border-right: 0; }
+    .aa-grid .aa {
+      margin: 0;
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+    }
+    .aa-grid .word {
+      margin: 10px 0 0;
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: 1;
+    }
+    .aa-grid[data-italic="true"] .aa,
+    .aa-grid[data-italic="true"] .word { font-style: italic; }
+    .aa-grid figcaption {
+      margin-top: 18px;
+      font-size: 12px;
+      font-weight: 500;
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .aa-grid figcaption .face {
+      display: block;
+      margin-top: 4px;
+      font-style: normal;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .aa-grid figcaption .face.it { display: none; }
+    .aa-grid[data-italic="true"] figcaption .face.roman { display: none; }
+    .aa-grid[data-italic="true"] figcaption .face.it { display: block; font-style: italic; }
+
+    .ramp { margin-top: 48px; }
+    .ramp-row {
+      display: grid;
+      grid-template-columns: 176px minmax(0, 1fr);
+      gap: 20px;
+      align-items: baseline;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+      font-weight: var(--w);
+    }
+    .ramp-row:last-child { border-bottom: 1px solid var(--line); }
+    .ramp-name { font-size: 14px; letter-spacing: 0.04em; }
+    .ramp-name span { display: block; margin-top: 4px; font-size: 12px; letter-spacing: 0.12em; color: var(--muted); }
+    .ramp-name .face { letter-spacing: 0; text-transform: none; }
+    .ramp-name .face.it { font-style: italic; }
+    .ramp-samples p {
+      margin: 0;
+      font-size: clamp(22px, 2.5vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    .ramp-samples .it { font-style: italic; margin-top: 6px; }
+
+    .fall {
+      border-top: 1px solid var(--line);
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    .fall-row {
+      display: grid;
+      grid-template-columns: 48px max-content;
+      gap: 16px;
+      align-items: baseline;
+      width: max-content;
+      min-width: 100%;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .fall-row p { white-space: nowrap; }
+    .fall-row b {
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+    .fall-row p { margin: 0; font-size: var(--sz); line-height: 1.15; letter-spacing: -0.02em; }
+
+    .article { max-width: 68ch; }
+    .article h2 {
+      margin: 0;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+    .deck {
+      margin: 18px 0 0;
+      font-size: 24px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.35;
+    }
+    .body-copy {
+      margin: 28px 0 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .body-copy p { margin: 0 0 1em; }
+    .pull {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      border-left: 2px solid var(--ink);
+      font-size: 26px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .colors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .colors h3 {
+      margin: 0 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .colors h3 span,
+    .note span {
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+    }
+    .note {
+      margin: -16px 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .colors p { margin: 0; font-size: 15px; line-height: 1.55; }
+
+    .langs { margin-top: 56px; border-top: 1px solid var(--line); }
+    .lang {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 16px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .lang b {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lang p { margin: 0; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.3; }
+
+    .glyph-block { margin: 0 0 28px; }
+    .glyph-block h3 {
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .glyphs {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+    }
+    .glyphs.small { font-size: 15px; letter-spacing: 0.02em; max-width: 70ch; }
+    .tr-i { letter-spacing: 0.12em; }
+
+    .ot {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 48px;
+    }
+    .ot figure { margin: 0; padding-top: 18px; border-top: 1px solid var(--line); }
+    .ot figcaption {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ot .tag { letter-spacing: 0; text-transform: none; font-weight: 500; }
+    .ot p {
+      margin: 12px 0 0;
+      font-size: 32px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      font-variant-ligatures: none;
+    }
+    .ot .state {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .bill {
+      margin-top: 14px;
+      max-width: 280px;
+      font-size: 18px;
+      line-height: 1.7;
+      font-variant-numeric: normal;
+    }
+    .bill div { display: flex; justify-content: space-between; gap: 24px; }
+    .sups { font-feature-settings: "sups" 1; }
+    .subs { font-feature-settings: "subs" 1; }
+    .ordn { font-feature-settings: "ordn" 1; }
+    .caps { letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .sheet {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 48px;
+    }
+    .sheet .eye {
+      margin: 0 0 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .sheet h2 {
+      margin: 0;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+    .sheet .lede {
+      margin: 16px 0 0;
+      max-width: 36ch;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .btn {
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 12px 16px;
+      cursor: pointer;
+    }
+    .btn.ghost { background: transparent; color: var(--ink); }
+    .receipt { align-self: end; }
+    .receipt h3 {
+      margin: 0 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .receipt div {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+      font-size: 16px;
+      font-feature-settings: "tnum" 1, "kern" 1;
+    }
+    .receipt .total {
+      font-weight: 900;
+      font-size: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .form {
+      margin-top: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: end;
+    }
+    .form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form input {
+      border: 0;
+      border-bottom: 1px solid var(--ink);
+      background: transparent;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      padding: 8px 0;
+      min-width: 220px;
+    }
+
+    #kullanim { padding-bottom: 0; }
+    .inverse {
+      margin: 48px -28px 0;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 64px 76px;
+    }
+    .inverse .kicker { color: rgba(244, 240, 232, 0.55); }
+    .inverse .light {
+      margin: 0;
+      max-width: 12ch;
+      font-weight: 300;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+    .inverse .black {
+      margin: 8px 0 0;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    footer {
+      padding: 28px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--ink); }
+
+    @media (max-width: 980px) {
+      .cover, .sheet, .colors, .ot { grid-template-columns: 1fr; }
+      .aa-grid { grid-template-columns: repeat(4, 1fr); }
+      .aa-grid figure:nth-child(4) { border-right: 0; }
+      .top-meta { display: none; }
+    }
+    @media (max-width: 720px) {
+      section { padding: 48px 18px; }
+      .top-row { padding: 12px 18px; gap: 14px; }
+      .opt-bar { padding: 0 18px 12px; }
+      .aa-grid { grid-template-columns: repeat(2, 1fr); }
+      .aa-grid figure { border-bottom: 1px solid var(--line); }
+      .aa-grid figure:nth-child(odd) { border-right: 1px solid var(--line); }
+      .aa-grid figure:nth-child(even) { border-right: 0; }
+      .ramp-row, .fall-row, .lang { grid-template-columns: 1fr; gap: 6px; }
+      .inverse { margin-left: -18px; margin-right: -18px; padding: 40px 36px; }
+      .sheet { padding: 28px 20px; }
+    }
+    @media print {
+      .top { position: static; }
+      .controls, .presets { display: none; }
+      .stage { border: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-row">
+      <a class="mark" href="#kapak">Lato</a>
+      <nav>
+        <a href="#deneme">Deneme</a>
+        <a href="#stiller">Stiller</a>
+        <a href="#selale">Şelale</a>
+        <a href="#metin">Metin</a>
+        <a href="#karakter">Karakter</a>
+        <a href="#opentype">OpenType</a>
+        <a href="#kullanim">Kullanım</a>
+      </nav>
+      <span class="top-meta">2.015 · 14 kesit</span>
+    </div>
+    <div class="opt-bar">
+      <p>Kapalıyken bu satırlar sayfada yok. Açınca bütün sayfaya eklenir.</p>
+      <div class="pills" id="page-opts">
+        <button type="button" data-opt="synthesis" aria-pressed="false"><code>font-synthesis: none</code></button>
+        <button type="button" data-opt="legibility" aria-pressed="false"><code>text-rendering: optimizeLegibility</code></button>
+        <button type="button" data-opt="features" aria-pressed="false"><code>kern · calt · liga</code></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="kapak">
+      <div class="wrap cover">
+        <div>
+          <p class="eyebrow">Yazı ailesi · 7 ağırlık, italikleriyle</p>
+          <h1>
+            <span class="w300">Pijamalı hasta,</span><br>
+            <span class="w400">yağız şoföre</span><br>
+            <span class="w700">çabucak güvendi.</span>
+          </h1>
+          <p class="byline">Łukasz Dziedzic, 2010–2015. Sürüm 2.015. Latin, Yunanca ve Kiril. Bu sayfa masaüstü TrueType kesitlerini gösterir.</p>
+        </div>
+        <ol class="style-index">
+          <li>
+            <span class="label">Light <em>300</em><small class="face">Lato Light</small><small class="face it">Lato Light Italic</small></span>
+            <span class="cuts"><b style="font-weight:300">Aa</b><b style="font-weight:300;font-style:italic">Aa</b></span>
+          </li>
+          <li>
+            <span class="label">Regular <em>400</em><small class="face">Lato Regular</small><small class="face it">Lato Italic</small></span>
+            <span class="cuts"><b style="font-weight:400">Aa</b><b style="font-weight:400;font-style:italic">Aa</b></span>
+          </li>
+          <li>
+            <span class="label">Medium <em>500</em><small class="face">Lato Medium</small><small class="face it">Lato Medium Italic</small></span>
+            <span class="cuts"><b style="font-weight:500">Aa</b><b style="font-weight:500;font-style:italic">Aa</b></span>
+          </li>
+          <li>
+            <span class="label">Semibold <em>600</em><small class="face">Lato Semibold</small><small class="face it">Lato Semibold Italic</small></span>
+            <span class="cuts"><b style="font-weight:600">Aa</b><b style="font-weight:600;font-style:italic">Aa</b></span>
+          </li>
+          <li>
+            <span class="label">Bold <em>700</em><small class="face">Lato Bold</small><small class="face it">Lato Bold Italic</small></span>
+            <span class="cuts"><b style="font-weight:700">Aa</b><b style="font-weight:700;font-style:italic">Aa</b></span>
+          </li>
+          <li>
+            <span class="label">Heavy <em>800</em><small class="face">Lato Heavy</small><small class="face it">Lato Heavy Italic</small></span>
+            <span class="cuts"><b style="font-weight:800">Aa</b><b style="font-weight:800;font-style:italic">Aa</b></span>
+          </li>
+          <li>
+            <span class="label">Black <em>900</em><small class="face">Lato Black</small><small class="face it">Lato Black Italic</small></span>
+            <span class="cuts"><b style="font-weight:900">Aa</b><b style="font-weight:900;font-style:italic">Aa</b></span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="deneme">
+      <div class="wrap">
+        <p class="kicker"><span>01</span> Deneme</p>
+        <div class="tester">
+          <div class="controls">
+            <div class="group">
+              <span class="group-label">Ağırlık</span>
+              <div class="pills" id="weights" role="radiogroup" aria-label="Ağırlık">
+                <button type="button" data-weight="300">Light</button>
+                <button type="button" data-weight="400" aria-pressed="true">Regular</button>
+                <button type="button" data-weight="500">Medium</button>
+                <button type="button" data-weight="600">Semibold</button>
+                <button type="button" data-weight="700">Bold</button>
+                <button type="button" data-weight="800">Heavy</button>
+                <button type="button" data-weight="900">Black</button>
+              </div>
+            </div>
+            <div class="group">
+              <span class="group-label">Biçim</span>
+              <div class="pills">
+                <button type="button" id="italic" aria-pressed="false">Italic</button>
+              </div>
+            </div>
+            <div class="group">
+              <label class="group-label" for="size">Punto <output id="size-out">72 px</output></label>
+              <input class="slider" id="size" type="range" min="12" max="160" value="72">
+            </div>
+            <div class="group">
+              <label class="group-label" for="leading">Satır <output id="leading-out">1.05</output></label>
+              <input class="slider" id="leading" type="range" min="80" max="180" value="105">
+            </div>
+            <div class="group">
+              <label class="group-label" for="tracking">Aralık <output id="tracking-out">0</output></label>
+              <input class="slider" id="tracking" type="range" min="-40" max="160" value="0">
+            </div>
+            <div class="group">
+              <span class="group-label">OpenType</span>
+              <div class="pills" id="features">
+                <button type="button" data-feat="liga" aria-pressed="false">Ligatür</button>
+                <button type="button" data-feat="dlig" aria-pressed="false">İsteğe bağlı</button>
+                <button type="button" data-feat="ss04" aria-pressed="false">Alternatif g</button>
+                <button type="button" data-feat="onum" aria-pressed="false">Eski stil</button>
+                <button type="button" data-feat="tnum" aria-pressed="false">Tablo rakam</button>
+              </div>
+            </div>
+            <div class="group">
+              <span class="group-label">Zemin</span>
+              <div class="pills" id="backgrounds">
+                <button type="button" data-bg="paper" aria-pressed="true">Kâğıt</button>
+                <button type="button" data-bg="white" aria-pressed="false">Beyaz</button>
+                <button type="button" data-bg="ink" aria-pressed="false">Siyah</button>
+              </div>
+            </div>
+            <div class="group">
+              <span class="group-label">Örnek metin</span>
+              <div class="pills presets" id="presets">
+                <button type="button" data-text="Pijamalı hasta, yağız şoföre çabucak güvendi.">Türkçe</button>
+                <button type="button" data-text="The quick brown fox jumps over the lazy dog.">English</button>
+                <button type="button" data-text="Hamburgefonstiv">Prova</button>
+                <button type="button" data-text="0123456789  1.280,50">Rakam</button>
+              </div>
+            </div>
+          </div>
+          <div class="stage" id="stage" data-bg="paper">
+            <p class="now" id="preview-name">Lato Regular</p>
+            <div id="preview" contenteditable="true" spellcheck="false" role="textbox" aria-label="Yazı denemesi">Pijamalı hasta, yağız şoföre çabucak güvendi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stiller">
+      <div class="wrap">
+        <p class="kicker"><span>02</span> Stiller</p>
+        <div class="aa-bar">
+          <p>Her ağırlık kendi dosyası. Roman ve Italic bütün satırı çevirir. Alttaki rampa aynı cümleyi düz ve italik gösterir.</p>
+          <div class="pills">
+            <button type="button" id="aa-roman" aria-pressed="true">Roman</button>
+            <button type="button" id="aa-italic" aria-pressed="false">Italic</button>
+          </div>
+        </div>
+        <div class="aa-grid" id="aa-grid">
+          <figure style="font-weight:300"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Light 300<span class="face roman">Lato Light</span><span class="face it">Lato Light Italic</span></figcaption></figure>
+          <figure style="font-weight:400"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Regular 400<span class="face roman">Lato Regular</span><span class="face it">Lato Italic</span></figcaption></figure>
+          <figure style="font-weight:500"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Medium 500<span class="face roman">Lato Medium</span><span class="face it">Lato Medium Italic</span></figcaption></figure>
+          <figure style="font-weight:600"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Semibold 600<span class="face roman">Lato Semibold</span><span class="face it">Lato Semibold Italic</span></figcaption></figure>
+          <figure style="font-weight:700"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Bold 700<span class="face roman">Lato Bold</span><span class="face it">Lato Bold Italic</span></figcaption></figure>
+          <figure style="font-weight:800"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Heavy 800<span class="face roman">Lato Heavy</span><span class="face it">Lato Heavy Italic</span></figcaption></figure>
+          <figure style="font-weight:900"><p class="aa">Aa</p><p class="word">Yaz</p><figcaption>Black 900<span class="face roman">Lato Black</span><span class="face it">Lato Black Italic</span></figcaption></figure>
+        </div>
+
+        <div class="ramp">
+          <div class="ramp-row" style="--w:300">
+            <div class="ramp-name">Light<span>300</span><span class="face">Lato Light</span><span class="face it">Lato Light Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+          <div class="ramp-row" style="--w:400">
+            <div class="ramp-name">Regular<span>400</span><span class="face">Lato Regular</span><span class="face it">Lato Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+          <div class="ramp-row" style="--w:500">
+            <div class="ramp-name">Medium<span>500</span><span class="face">Lato Medium</span><span class="face it">Lato Medium Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+          <div class="ramp-row" style="--w:600">
+            <div class="ramp-name">Semibold<span>600</span><span class="face">Lato Semibold</span><span class="face it">Lato Semibold Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+          <div class="ramp-row" style="--w:700">
+            <div class="ramp-name">Bold<span>700</span><span class="face">Lato Bold</span><span class="face it">Lato Bold Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+          <div class="ramp-row" style="--w:800">
+            <div class="ramp-name">Heavy<span>800</span><span class="face">Lato Heavy</span><span class="face it">Lato Heavy Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+          <div class="ramp-row" style="--w:900">
+            <div class="ramp-name">Black<span>900</span><span class="face">Lato Black</span><span class="face it">Lato Black Italic</span></div>
+            <div class="ramp-samples">
+              <p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+              <p class="it">Pijamalı hasta, yağız şoföre çabucak güvendi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="selale">
+      <div class="wrap">
+        <p class="kicker"><span>03</span> Şelale</p>
+        <p class="note">Bütün satırlar Lato Regular.</p>
+        <div class="fall">
+          <div class="fall-row" style="--sz:96px"><b>96</b><p>Hamburgefonstiv</p></div>
+          <div class="fall-row" style="--sz:72px"><b>72</b><p>Hamburgefonstiv</p></div>
+          <div class="fall-row" style="--sz:60px"><b>60</b><p>Hamburgefonstiv</p></div>
+          <div class="fall-row" style="--sz:48px"><b>48</b><p>Hamburgefonstiv</p></div>
+          <div class="fall-row" style="--sz:36px"><b>36</b><p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p></div>
+          <div class="fall-row" style="--sz:28px"><b>28</b><p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p></div>
+          <div class="fall-row" style="--sz:21px"><b>21</b><p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p></div>
+          <div class="fall-row" style="--sz:18px"><b>18</b><p>The quick brown fox jumps over the lazy dog.</p></div>
+          <div class="fall-row" style="--sz:16px"><b>16</b><p>The quick brown fox jumps over the lazy dog.</p></div>
+          <div class="fall-row" style="--sz:14px"><b>14</b><p>The quick brown fox jumps over the lazy dog.</p></div>
+          <div class="fall-row" style="--sz:12px"><b>12</b><p>The quick brown fox jumps over the lazy dog.</p></div>
+          <div class="fall-row" style="--sz:11px"><b>11</b><p>The quick brown fox jumps over the lazy dog.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metin">
+      <div class="wrap">
+        <p class="kicker"><span>04</span> Metin</p>
+        <article class="article">
+          <h2>Yazın ortasında bir yazı.</h2>
+          <p class="deck">Gövdede sakindir; büyük puntoda omuzları belirginleşir.</p>
+          <div class="body-copy">
+            <p>Sabah ışığı masanın kenarına düştüğünde satırlar henüz dağınık durur. Bir punto, bir ağırlık ve biraz satır aralığı her şeyi yerine oturtur. İyi bir aile bağırmadan hiyerarşi kurar.</p>
+            <p>Noktalama, rakamlar ve Türkçe harfler aynı ritimde kalır. Ğ, ş, ı ve ö yabancı durmaz; İ ile I birbirine karışmaz. Okuma ölçüsü 18 punto, satır yüksekliği 1.6.</p>
+          </div>
+          <p class="pull">Şeffaf gövde, sıcak detay, büyük puntoda net karakter.</p>
+        </article>
+
+        <div class="colors">
+          <article style="font-weight:300">
+            <h3>Light 300<span>Lato Light</span></h3>
+            <p>Sabah ışığı masanın kenarına düştüğünde satırlar henüz dağınık durur. İnce gövde nefes alır, başlık ise sayfayı tutar. Ğ, ş, ı ve ö aynı aileden gelir.</p>
+          </article>
+          <article style="font-weight:400">
+            <h3>Regular 400<span>Lato Regular</span></h3>
+            <p>Sabah ışığı masanın kenarına düştüğünde satırlar henüz dağınık durur. İnce gövde nefes alır, başlık ise sayfayı tutar. Ğ, ş, ı ve ö aynı aileden gelir.</p>
+          </article>
+          <article style="font-weight:500">
+            <h3>Medium 500<span>Lato Medium</span></h3>
+            <p>Sabah ışığı masanın kenarına düştüğünde satırlar henüz dağınık durur. İnce gövde nefes alır, başlık ise sayfayı tutar. Ğ, ş, ı ve ö aynı aileden gelir.</p>
+          </article>
+        </div>
+
+        <div class="langs">
+          <div class="lang"><b>Türkçe</b><p>Pijamalı hasta, yağız şoföre çabucak güvendi.</p></div>
+          <div class="lang"><b>English</b><p>The quick brown fox jumps over the lazy dog.</p></div>
+          <div class="lang"><b>Polski</b><p>Zażółć gęślą jaźń.</p></div>
+          <div class="lang" lang="el"><b>Ελληνικά</b><p>Ξεσκεπάζω την ψυχοφθόρα βδελυγμία.</p></div>
+          <div class="lang" lang="ru"><b>Русский</b><p>Съешь же ещё этих мягких французских булок.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="karakter">
+      <div class="wrap">
+        <p class="kicker"><span>05</span> Karakter</p>
+        <div class="glyph-block">
+          <h3>Büyük</h3>
+          <p class="glyphs">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+        </div>
+        <div class="glyph-block">
+          <h3>Küçük</h3>
+          <p class="glyphs">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+        </div>
+        <div class="glyph-block">
+          <h3>Türkçe</h3>
+          <p class="glyphs tr-i">Ç Ğ İ I Ö Ş Ü &nbsp;&nbsp; ç ğ i ı ö ş ü</p>
+        </div>
+        <div class="glyph-block">
+          <h3>Rakam ve noktalama</h3>
+          <p class="glyphs">0 1 2 3 4 5 6 7 8 9</p>
+          <p class="glyphs">. , ; : ! ? … — – - “ ” ‘ ’ « » ( ) [ ] { } / @ &amp; # % + − =</p>
+        </div>
+        <div class="glyph-block">
+          <h3>Çiftler</h3>
+          <p class="glyphs">Av Wa To Ty ff fi fl gg ya İi ıi 1İ</p>
+        </div>
+        <div class="glyph-block">
+          <h3>Küçük punto</h3>
+          <p class="glyphs small">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z Ç Ğ İ I Ö Ş Ü ç ğ i ı ö ş ü 0 1 2 3 4 5 6 7 8 9 . , ; : ! ?</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="opentype">
+      <div class="wrap">
+        <p class="kicker"><span>06</span> OpenType</p>
+        <div class="ot">
+          <figure>
+            <figcaption>Ligatür <span class="tag">liga</span></figcaption>
+            <p style="font-feature-settings:'liga' 0,'kern' 1"><span class="state">Kapalı</span>office efficient</p>
+            <p style="font-feature-settings:'liga' 1,'kern' 1"><span class="state">Açık</span>office efficient</p>
+          </figure>
+          <figure>
+            <figcaption>İsteğe bağlı <span class="tag">dlig</span></figcaption>
+            <p style="font-feature-settings:'dlig' 0,'liga' 0,'kern' 1"><span class="state">Kapalı</span>check strict fact</p>
+            <p style="font-feature-settings:'dlig' 1,'kern' 1"><span class="state">Açık</span>check strict fact</p>
+          </figure>
+          <figure>
+            <figcaption>Alternatif g <span class="tag">ss04</span></figcaption>
+            <p style="font-feature-settings:'ss04' 0,'kern' 1"><span class="state">Varsayılan</span>gölgeli gece</p>
+            <p style="font-feature-settings:'ss04' 1,'kern' 1"><span class="state">ss04</span>gölgeli gece</p>
+          </figure>
+          <figure>
+            <figcaption>Rakamlar <span class="tag">onum · tnum</span></figcaption>
+            <p style="font-feature-settings:'kern' 1"><span class="state">Çizgi, orantılı</span>0123456789</p>
+            <p style="font-feature-settings:'onum' 1,'kern' 1"><span class="state">Eski stil</span>0123456789</p>
+            <p style="font-feature-settings:'tnum' 1,'kern' 1"><span class="state">Tablo</span>0123456789</p>
+          </figure>
+          <figure>
+            <figcaption>Hizalı hesap <span class="tag">tnum</span></figcaption>
+            <div class="bill" style="font-feature-settings:'kern' 1">
+              <span class="state">Orantılı</span>
+              <div><span>Keten</span><span>1.280,00</span></div>
+              <div><span>Ceket</span><span>12.450,00</span></div>
+              <div><span>Kargo</span><span>149,90</span></div>
+            </div>
+            <div class="bill" style="font-feature-settings:'tnum' 1,'kern' 1">
+              <span class="state">Tablo</span>
+              <div><span>Keten</span><span>1.280,00</span></div>
+              <div><span>Ceket</span><span>12.450,00</span></div>
+              <div><span>Kargo</span><span>149,90</span></div>
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Kesir, üst ve alt simge</figcaption>
+            <p style="font-feature-settings:'frac' 0,'kern' 1"><span class="state">Düz</span>1/2 &nbsp; 3/4 &nbsp; H2O &nbsp; x2</p>
+            <p style="font-feature-settings:'frac' 1,'kern' 1"><span class="state">frac · sups · subs</span>1/2 &nbsp; 3/4 &nbsp; H<span class="subs">2</span>O &nbsp; x<span class="sups">2</span></p>
+          </figure>
+          <figure>
+            <figcaption>Sıra sayısı <span class="tag">ordn</span></figcaption>
+            <p><span class="state">Düz</span>1st &nbsp; 2nd &nbsp; No</p>
+            <p><span class="state">ordn</span>1<span class="ordn">st</span> &nbsp; 2<span class="ordn">nd</span> &nbsp; N<span class="ordn">o</span></p>
+          </figure>
+          <figure>
+            <figcaption>Büyük harf noktalama <span class="tag">case</span></figcaption>
+            <p class="caps" style="font-feature-settings:'case' 0,'kern' 1"><span class="state">Kapalı</span>(2015) — [Lato]</p>
+            <p class="caps" style="font-feature-settings:'case' 1,'kern' 1"><span class="state">Açık</span>(2015) — [Lato]</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="kullanim">
+      <div class="wrap">
+        <p class="kicker"><span>07</span> Kullanım</p>
+        <div class="sheet">
+          <div>
+            <p class="eye">Koleksiyon</p>
+            <h2>Yazın hafifliği, kışın netliği.</h2>
+            <p class="lede">Başlık Heavy, gövde Regular, düğme Bold. Fiyatlar tablo rakamıyla hizalanır.</p>
+            <div class="actions">
+              <button class="btn" type="button">Sepete ekle</button>
+              <button class="btn ghost" type="button">Ayrıntılar</button>
+            </div>
+            <form class="form" action="#" onsubmit="return false">
+              <label>E-posta
+                <input type="email" value="ada@ornek.com" aria-label="E-posta">
+              </label>
+              <button class="btn" type="submit">Listeye katıl</button>
+            </form>
+          </div>
+          <div class="receipt">
+            <h3>Sipariş · tnum</h3>
+            <div><span>Keten gömlek</span><span>1.280,00</span></div>
+            <div><span>Yün ceket</span><span>12.450,00</span></div>
+            <div><span>Kargo</span><span>149,90</span></div>
+            <div class="total"><span>Toplam</span><span>13.879,90</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="inverse">
+        <div class="wrap">
+          <p class="kicker"><span>08</span> Ters zemin</p>
+          <p class="light">yağız şoföre</p>
+          <p class="black">çabucak güvendi.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Lato, Łukasz Dziedzic. Reserved Font Name “Lato”.</span>
+      <a href="fonts/OFL.txt">SIL Open Font License 1.1</a>
+    </div>
+  </footer>
+
+  <script>
+    const preview = document.querySelector("#preview");
+    const previewName = document.querySelector("#preview-name");
+    const stage = document.querySelector("#stage");
+    const faceNames = {
+      300: ["Lato Light", "Lato Light Italic"],
+      400: ["Lato Regular", "Lato Italic"],
+      500: ["Lato Medium", "Lato Medium Italic"],
+      600: ["Lato Semibold", "Lato Semibold Italic"],
+      700: ["Lato Bold", "Lato Bold Italic"],
+      800: ["Lato Heavy", "Lato Heavy Italic"],
+      900: ["Lato Black", "Lato Black Italic"]
+    };
+    const state = {
+      weight: 400,
+      italic: false,
+      size: 72,
+      leading: 1.05,
+      tracking: 0,
+      bg: "paper",
+      feats: new Set()
+    };
+
+    function apply() {
+      preview.style.setProperty("--w", String(state.weight));
+      preview.style.setProperty("--st", state.italic ? "italic" : "normal");
+      preview.style.setProperty("--sz", state.size + "px");
+      preview.style.setProperty("--lh", String(state.leading));
+      preview.style.setProperty("--tr", state.tracking.toFixed(3) + "em");
+      if (state.feats.size === 0) preview.style.removeProperty("--feat");
+      else preview.style.setProperty("--feat", [...state.feats].map((tag) => `"${tag}" 1`).join(", "));
+      previewName.textContent = faceNames[state.weight][state.italic ? 1 : 0];
+      stage.dataset.bg = state.bg;
+    }
+
+    document.querySelectorAll("#page-opts button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const on = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", on ? "true" : "false");
+        document.documentElement.classList.toggle("opt-" + button.dataset.opt, on);
+      });
+    });
+
+    document.querySelectorAll("#weights button").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.weight = Number(button.dataset.weight);
+        document.querySelectorAll("#weights button").forEach((item) => {
+          item.setAttribute("aria-pressed", item === button ? "true" : "false");
+        });
+        apply();
+      });
+    });
+
+    document.querySelector("#italic").addEventListener("click", (event) => {
+      state.italic = !state.italic;
+      event.currentTarget.setAttribute("aria-pressed", state.italic ? "true" : "false");
+      apply();
+    });
+
+    const size = document.querySelector("#size");
+    const sizeOut = document.querySelector("#size-out");
+    size.addEventListener("input", () => {
+      state.size = Number(size.value);
+      sizeOut.textContent = state.size + " px";
+      apply();
+    });
+
+    const leading = document.querySelector("#leading");
+    const leadingOut = document.querySelector("#leading-out");
+    leading.addEventListener("input", () => {
+      state.leading = Number(leading.value) / 100;
+      leadingOut.textContent = state.leading.toFixed(2);
+      apply();
+    });
+
+    const tracking = document.querySelector("#tracking");
+    const trackingOut = document.querySelector("#tracking-out");
+    tracking.addEventListener("input", () => {
+      state.tracking = Number(tracking.value) / 1000;
+      trackingOut.textContent = state.tracking.toFixed(3);
+      apply();
+    });
+
+    document.querySelectorAll("#features button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const feat = button.dataset.feat;
+        if (state.feats.has(feat)) state.feats.delete(feat);
+        else state.feats.add(feat);
+        button.setAttribute("aria-pressed", state.feats.has(feat) ? "true" : "false");
+        apply();
+      });
+    });
+
+    document.querySelectorAll("#backgrounds button").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.bg = button.dataset.bg;
+        document.querySelectorAll("#backgrounds button").forEach((item) => {
+          item.setAttribute("aria-pressed", item === button ? "true" : "false");
+        });
+        apply();
+      });
+    });
+
+    document.querySelectorAll("#presets button").forEach((button) => {
+      button.addEventListener("click", () => {
+        preview.textContent = button.dataset.text;
+      });
+    });
+
+    preview.addEventListener("paste", (event) => {
+      event.preventDefault();
+      const text = (event.clipboardData || window.clipboardData).getData("text/plain");
+      const selection = window.getSelection();
+      if (!selection.rangeCount) return;
+      selection.deleteFromDocument();
+      selection.getRangeAt(0).insertNode(document.createTextNode(text));
+    });
+
+    const aaGrid = document.querySelector("#aa-grid");
+    document.querySelector("#aa-roman").addEventListener("click", (event) => {
+      aaGrid.dataset.italic = "false";
+      event.currentTarget.setAttribute("aria-pressed", "true");
+      document.querySelector("#aa-italic").setAttribute("aria-pressed", "false");
+    });
+    document.querySelector("#aa-italic").addEventListener("click", (event) => {
+      aaGrid.dataset.italic = "true";
+      event.currentTarget.setAttribute("aria-pressed", "true");
+      document.querySelector("#aa-roman").setAttribute("aria-pressed", "false");
+    });
+
+    const links = [...document.querySelectorAll("nav a")];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => {
+          link.classList.toggle("is-on", link.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-40% 0px -50% 0px" });
+    document.querySelectorAll("main > section").forEach((section) => observer.observe(section));
+
+    apply();
+  </script>
+</body>
+</html>
